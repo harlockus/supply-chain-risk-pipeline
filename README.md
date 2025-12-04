@@ -309,6 +309,7 @@ These endpoints provide domain classification, severity, CVSS, and full recommen
 
 # Full Pipeline Example
 
+---
 Phase 1 — SBOM generation
 
 python3 veracode_sbom_portfolio.py 
@@ -321,7 +322,7 @@ all
 
 –include-linked-agent
 
-
+---
 Phase 2 — Upload SBOMs to Phylum
 
 python3 upload_sboms_to_phylum.py 
@@ -336,7 +337,7 @@ python3 upload_sboms_to_phylum.py
 
 –output-dir phylum_output
 
-
+---
 Phase 5a — Build portfolio JSON
 
 python3 phylum_phase5_project_report.py 
