@@ -29,14 +29,14 @@ The pipeline consists of four major stages:
 ## Repository Structure
 
 SBOM/
-veracode_sbom_portfolio.py
-upload_sboms_to_phylum.py
-phylum_phase5_project_report.py
-phylum_phase5_project_pdf.py
-sbom_output/
-phylum_output/
-reports/
-venv/                      (optional virtual environment)
+   veracode_sbom_portfolio.py
+   upload_sboms_to_phylum.py
+   phylum_phase5_project_report.py
+   phylum_phase5_project_pdf.py
+   sbom_output/
+   phylum_output/
+   reports/
+   venv/                      (optional virtual environment)
 
 ---
 
