@@ -49,11 +49,13 @@ Required packages include:
 ### Veracode Credentials
 
 export VERACODE_API_KEY_ID=“YOUR_API_ID”
+
 export VERACODE_API_KEY_SECRET=“YOUR_API_KEY”
 
 ### Phylum Authentication
 
 phylum auth login
+
 export PHYLUM_API_KEY=“ph0_…”
 
 ---
@@ -70,9 +72,13 @@ Generates CycloneDX JSON SBOMs for:
 ### Command
 
 python3 veracode_sbom_portfolio.py 
+
 all 
+
 –format cyclonedx 
+
 –output-dir sbom_output 
+
 –include-linked-agent
 
 ### Output
@@ -97,10 +103,15 @@ Uploads every SBOM to Phylum and records the job metadata.
 ### Command
 
 python3 upload_sboms_to_phylum.py 
+
 –org Veracode 
+
 –group andrea-test 
+
 –project andrea-test-project-01dec 
+
 –sbom-dir sbom_output 
+
 –output-dir phylum_output
 
 ### Output
@@ -125,11 +136,17 @@ Aggregates and enriches data across all SBOMs into per-label JSON and one unifie
 ### Command
 
 python3 phylum_phase5_project_report.py 
+
 –org Veracode 
+
 –group andrea-test 
+
 –project andrea-test-project-01dec 
+
 –index-csv phylum_output/phylum_sbom_upload_index.csv 
+
 –output-dir reports 
+
 –project-output reports/project_andrea-test-project-01dec.json
 
 ### Processing Steps
@@ -167,7 +184,9 @@ Renders a professional multi-section PDF using the enriched project JSON.
 ### Command
 
 python3 phylum_phase5_project_pdf.py 
+
 –project-json reports/project_andrea-test-project-01dec.json 
+
 –output-pdf reports/project_andrea-test-project-01dec.pdf
 
 ---
@@ -293,34 +312,54 @@ These endpoints provide domain classification, severity, CVSS, and full recommen
 Phase 1 — SBOM generation
 
 python3 veracode_sbom_portfolio.py 
+
 all 
+
 –format cyclonedx 
+
 –output-dir sbom_output 
+
 –include-linked-agent
+
 
 Phase 2 — Upload SBOMs to Phylum
 
 python3 upload_sboms_to_phylum.py 
+
 –org Veracode 
+
 –group andrea-test 
+
 –project andrea-test-project-01dec 
+
 –sbom-dir sbom_output 
+
 –output-dir phylum_output
+
 
 Phase 5a — Build portfolio JSON
 
 python3 phylum_phase5_project_report.py 
+
 –org Veracode 
+
 –group andrea-test 
+
 –project andrea-test-project-01dec 
+
 –index-csv phylum_output/phylum_sbom_upload_index.csv 
+
 –output-dir reports 
+
 –project-output reports/project_andrea-test-project-01dec.json
+
 
 Phase 5b — Generate final PDF
 
 python3 phylum_phase5_project_pdf.py 
+
 –project-json reports/project_andrea-test-project-01dec.json 
+
 –output-pdf reports/project_andrea-test-project-01dec.pdf
 
 ---
