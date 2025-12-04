@@ -66,11 +66,13 @@ Required libraries include:
 ### Veracode Credentials
 
 export VERACODE_API_KEY_ID=“YOUR_API_ID”
+
 export VERACODE_API_KEY_SECRET=“YOUR_API_KEY”
 
 ### Phylum Authentication
 
 phylum auth login
+
 export PHYLUM_API_KEY=“ph0_…”
 
 ---
@@ -84,9 +86,13 @@ Generates a CycloneDX SBOM for each Veracode application and each SCA Agent work
 ### Run
 
 python3 veracode_sbom_portfolio.py 
+
 all 
+
 –format cyclonedx 
+
 –output-dir sbom_output 
+
 –include-linked-agent
 
 ### Output
@@ -111,23 +117,33 @@ Uploads every SBOM to Phylum using the Phylum CLI and creates the master index t
 ### Run
 
 python3 upload_sboms_to_phylum.py 
+
 –org Veracode 
+
 –group andrea-test 
+
 –project andrea-test-project-01dec 
+
 –sbom-dir sbom_output 
+
 –output-dir phylum_output
 
 ### Output
 
 - `phylum_output/phylum_sbom_upload_index.csv`
+
 - `<SBOM>.phylum_output.json`
 
 The index CSV includes:
 
 - The SBOM path  
+
 - The Phylum label created  
+
 - The Phylum job ID  
+
 - Analysis status (`complete`, `pending`, `policy_failure`, `error`)  
+
 - Path to CLI output JSON  
 
 This file is the authoritative mapping for subsequent enrichment.
@@ -143,11 +159,17 @@ Aggregates and enriches Phylum analysis results for all SBOMs into a single proj
 ### Run
 
 python3 phylum_phase5_project_report.py 
+
 –org Veracode 
+
 –group andrea-test 
+
 –project andrea-test-project-01dec 
+
 –index-csv phylum_output/phylum_sbom_upload_index.csv 
+
 –output-dir reports 
+
 –project-output reports/project_andrea-test-project-01dec.json
 
 ### Operations Performed
@@ -185,7 +207,9 @@ Generates a multi-section, professional PDF from the combined project JSON.
 ### Run
 
 python3 phylum_phase5_project_pdf.py 
+
 –project-json reports/project_andrea-test-project-01dec.json 
+
 –output-pdf reports/project_andrea-test-project-01dec.pdf
 
 ---
@@ -245,34 +269,52 @@ Each section contains:
 
 Phase 1 — SBOM generation
 
-python3 veracode_sbom_portfolio.py all 
+python3 veracode_sbom_portfolio.py 
+
+all 
+
 –format cyclonedx 
+
 –output-dir sbom_output 
+
 –include-linked-agent
 
 Phase 2 — Upload to Phylum
 
 python3 upload_sboms_to_phylum.py 
+
 –org Veracode 
+
 –group andrea-test 
+
 –project andrea-test-project-01dec 
+
 –sbom-dir sbom_output 
+
 –output-dir phylum_output
 
 Phase 5a — Portfolio JSON
 
 python3 phylum_phase5_project_report.py 
+
 –org Veracode 
+
 –group andrea-test 
+
 –project andrea-test-project-01dec 
+
 –index-csv phylum_output/phylum_sbom_upload_index.csv 
+
 –output-dir reports 
+
 –project-output reports/project_andrea-test-project-01dec.json
 
 Phase 5b — Final PDF
 
 python3 phylum_phase5_project_pdf.py 
+
 –project-json reports/project_andrea-test-project-01dec.json 
+
 –output-pdf reports/project_andrea-test-project-01dec.pdf
 
 ---
